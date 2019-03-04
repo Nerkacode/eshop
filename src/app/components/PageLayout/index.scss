@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+.Page-Layout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+
+  header {
+    height: 100px;
+
+    .Logo {
+      position: absolute;
+      height: 105px;
+      padding: 10px 0 0 20px;
+    }
+
+    nav {
+      background: #6bd6c8;
+      display: flex;
+      flex-direction: row-reverse;
+      padding: 20px;
+
+      button,
+      a {
+        font-size: 18px;
+        line-height: 42px;
+        background: transparent;
+        border: none;
+        color: #000;
+        cursor: pointer;
+        transition: all 0.3 linear;
+
+        &:hover {
+          background: #fff;
+          color: #6bd6c8;
+          border-radius: 15px;
+        }
+      }
+    }
+  }
+  main {
+    flex-grow: 1;
+    padding: 50px 20px 40px;
+  }
+
+  footer {
+    padding: 20px;
+    background: #6bd6c8;
+    color: #000;
+    text-align: center;
+  }
+}
