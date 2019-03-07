@@ -1,13 +1,13 @@
 import React from 'react';
 import { PulseLoader } from 'react-spinners';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+} from 'react-router-dom';
 import { Shop, Favorites, Cart } from './pages'; // pagal defaulta ieskomas pages.js, jei nera tada pages katalogo ir jame index.js failo
 import { PageLayout } from './components';
-
-// const NAV_LINKS = ['shop', 'cart', 'favorites'].map(link => (
-//   <button type="button" onClick={() => this.setState({ route: link })}>
-//     {link}
-//   </button>
-// ));
 
 class App extends React.Component {
   constructor(props) {
@@ -16,12 +16,9 @@ class App extends React.Component {
       products: [],
       error: null,
       loading: false,
-      route: 'shop',
     };
     this.NAV_LINKS = ['shop', 'cart', 'favorites'].map(link => (
-      <button type="button" onClick={() => this.setState({ route: link })}>
-        {link}
-      </button>
+      <Link to={`/${link}`}>{link}</Link>
     ));
   }
 
@@ -64,49 +61,48 @@ class App extends React.Component {
     }));
   };
 
-  renderRoute = () => {
-    const { route, products } = this.state;
-    switch (route) {
-      case 'shop':
-        return (
-          <Shop
-            products={products}
-            toggleFavorite={this.toggleFavorite}
-            updateCartCount={this.updateCartCount}
-          />
-        );
-      case 'favorites':
-        return (
-          <Favorites
-            products={products.filter(product => product.isFavorite)}
-            toggleFavorite={this.toggleFavorite}
-            updateCartCount={this.updateCartCount}
-          />
-        );
-      case 'cart':
-        return (
-          <Cart products={products.filter(product => product.cartCount > 0)} />
-        );
-      default:
-        return (
-          <Shop
-            products={products}
-            toggleFavorite={this.toggleFavorite}
-            updateCartCount={this.updateCartCount}
-          />
-        );
-    }
+  renderShop = () => {
+    const { products } = this.state;
+    return (
+      <Shop
+        products={products}
+        toggleFavorite={this.toggleFavorite}
+        updateCartCount={this.updateCartCount}
+      />
+    );
+  };
+
+  renderCart = () => {
+    const { products } = this.state;
+    return (
+      <Cart products={products.filter(product => product.cartCount > 0)} />
+    );
+  };
+
+  renderFavorites = () => {
+    const { products } = this.state;
+    return (
+      <Favorites
+        products={products.filter(product => product.isFavorite)}
+        toggleFavorite={this.toggleFavorite}
+        updateCartCount={this.updateCartCount}
+      />
+    );
   };
 
   render() {
     const { loading, error } = this.state;
-
     return (
-      <PageLayout navLinks={this.NAV_LINKS}>
-        {loading && <PulseLoader />}
-        {error && <h3>{error}</h3>}
-        {this.renderRoute()}
-      </PageLayout>
+      <Router>
+        <PageLayout navLinks={this.NAV_LINKS}>
+          {loading && <PulseLoader />}
+          {error && <h3>{error}</h3>}
+          <Route exact path="/shop" component={this.renderShop} />
+          <Route exact path="/favorites" component={this.renderFavorites} />
+          <Route exact path="/cart" component={this.renderCart} />
+          <Redirect exact from="/" to="/shop" />
+        </PageLayout>
+      </Router>
     );
   }
 }
