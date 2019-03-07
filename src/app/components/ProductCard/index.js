@@ -29,7 +29,7 @@ function ProductCard({
       />
       <button type="button" onClick={() => toggleFavorite(id)}>
         <span role="img" aria-label="close">
-          {isFavorite ? '👍' : '👎'}
+          {isFavorite ? '😎' : '😏'}
         </span>
       </button>
     </div>

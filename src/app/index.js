@@ -3,11 +3,11 @@ import { PulseLoader } from 'react-spinners';
 import { Shop, Favorites, Cart } from './pages'; // pagal defaulta ieskomas pages.js, jei nera tada pages katalogo ir jame index.js failo
 import { PageLayout } from './components';
 
-const NAV_LINKS = ['shop', 'cart', 'favorites'].map(link => (
-  <button type="button" onClick={() => console.log(link)}>
-    {link}
-  </button>
-));
+// const NAV_LINKS = ['shop', 'cart', 'favorites'].map(link => (
+//   <button type="button" onClick={() => this.setState({ route: link })}>
+//     {link}
+//   </button>
+// ));
 
 class App extends React.Component {
   constructor(props) {
@@ -18,6 +18,11 @@ class App extends React.Component {
       loading: false,
       route: 'shop',
     };
+    this.NAV_LINKS = ['shop', 'cart', 'favorites'].map(link => (
+      <button type="button" onClick={() => this.setState({ route: link })}>
+        {link}
+      </button>
+    ));
   }
 
   componentDidMount() {
@@ -70,7 +75,7 @@ class App extends React.Component {
             updateCartCount={this.updateCartCount}
           />
         );
-      case 'favorite':
+      case 'favorites':
         return (
           <Favorites
             products={products.filter(product => product.isFavorite)}
@@ -97,7 +102,7 @@ class App extends React.Component {
     const { loading, error } = this.state;
 
     return (
-      <PageLayout navLinks={NAV_LINKS}>
+      <PageLayout navLinks={this.NAV_LINKS}>
         {loading && <PulseLoader />}
         {error && <h3>{error}</h3>}
         {this.renderRoute()}
