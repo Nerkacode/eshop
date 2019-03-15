@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { ProductsContainer } from '../../components';
-import './index.scss';
+import React from "react";
+import { connect } from "react-redux";
+import { ProductsContainer } from "../../components";
+import "./index.scss";
 
 function Cart({ products }) {
   const total = products.reduce((result, product) => {
@@ -23,25 +23,15 @@ function Cart({ products }) {
           </div>
         );
       })}
-      <div className="Cart-total">{`total: ${total}`}</div>
+      <div className="Cart-total">{`Total: ${total}`}</div>
     </ProductsContainer>
   );
 }
 
-Cart.propTypes = {
-  products: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-      cartCount: PropTypes.string.isRequired,
-    })
-  ),
-};
+function mapStateToProps(state) {
+  return {
+    products: state.products.filter(product => product.cartCount > 0),
+  };
+}
 
-Cart.defaultProps = {
-  products: [],
-};
-
-export default Cart;
+export default connect(mapStateToProps)(Cart);

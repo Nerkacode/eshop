@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './index.scss';
+import React from "react";
+import PropTypes from "prop-types";
+import "./index.scss";
 
 function ProductsContainer({ children, className }) {
-  return <div className={`Products-container ${className}`}>{children}</div>;
+  return <div className={`Products-list ${className}`}>{children}</div>;
 }
 
 ProductsContainer.propTypes = {
@@ -12,7 +12,7 @@ ProductsContainer.propTypes = {
 };
 
 ProductsContainer.defaultProps = {
-  className: '',
+  className: "",
 };
 
 export default ProductsContainer;

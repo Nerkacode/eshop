@@ -1,14 +1,15 @@
 {
-  "name": "eshop",
+  "name": "shop",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "node-package-manager": "^1.0.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
+    "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
     "react-spinners": "^0.5.3",
+    "redux": "^4.0.1",
     "reset-css": "^4.0.1"
   },
   "scripts": {
@@ -39,5 +40,9 @@
     "node-sass": "^4.11.0",
     "prettier": "^1.16.4",
     "prop-types": "^15.7.2"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }

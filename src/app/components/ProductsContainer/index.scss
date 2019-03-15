@@ -1,8 +1,9 @@
-.Products-container {
+.Products-list {
+  max-width: 1200px;
+  padding: 0 50px;
+  margin: 0 auto;
+  justify-content: center;
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
-  justify-content: center;
-  max-width: 1500px;
-  margin: 0 auto;
+  box-sizing: border-box;
 }

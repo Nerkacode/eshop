@@ -1,6 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { ProductCard, ProductsContainer } from '../../components';
+import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { ProductCard, ProductsContainer } from "../../components";
 
 function Favorites({ products, toggleFavorite, updateCartCount }) {
   return (
@@ -23,8 +24,8 @@ Favorites.propTypes = {
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
+      currencySymbol: PropTypes.string.isRequired,
       price: PropTypes.string.isRequired,
-      currency: PropTypes.string.isRequired,
       isFavorite: PropTypes.bool.isRequired,
     })
   ),
@@ -36,4 +37,22 @@ Favorites.defaultProps = {
   products: [],
 };
 
-export default Favorites;
+function mapStateToProps(state) {
+  return {
+    products: state.products.filter(product => product.isFavorite),
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    toggleFavorite: id =>
+      dispatch({ type: "TOGGLE_FAVORITE_PRODUCT", payload: id }),
+    updateCartCount: (id, count) =>
+      dispatch({ type: "UPDATE_PRODUCT_CART_COUNT", payload: { id, count } }),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Favorites);

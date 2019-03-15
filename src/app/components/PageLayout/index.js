@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './index.scss';
+import React from "react";
+import PropTypes from "prop-types";
+import "./index.scss";
 
 function PageLayout({ children, navLinks }) {
   return (
     <div className="Page-Layout">
       <header>
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Logo_TV_2015.svg"
-          alt="logo"
+          src="https://www.brandcrowd.com/gallery/brands/thumbs/thumb12609037698059.jpg"
+          alt="Company logo"
           className="Logo"
         />
         <nav>
