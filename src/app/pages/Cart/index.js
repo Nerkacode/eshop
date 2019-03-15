@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { ProductsContainer } from "../../components";
 import "./index.scss";
@@ -28,9 +29,17 @@ function Cart({ products }) {
   );
 }
 
+Cart.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+
 function mapStateToProps(state) {
   return {
-    products: state.products.filter(product => product.cartCount > 0),
+    products: state.shop.products.filter(product => product.cartCount > 0),
   };
 }
 

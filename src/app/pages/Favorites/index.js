@@ -22,24 +22,15 @@ Favorites.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
-      currencySymbol: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-      isFavorite: PropTypes.bool.isRequired,
     })
-  ),
+  ).isRequired,
   toggleFavorite: PropTypes.func.isRequired,
   updateCartCount: PropTypes.func.isRequired,
 };
 
-Favorites.defaultProps = {
-  products: [],
-};
-
 function mapStateToProps(state) {
   return {
-    products: state.products.filter(product => product.isFavorite),
+    products: state.shop.products.filter(product => product.isFavorite),
   };
 }
 
