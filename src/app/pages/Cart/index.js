@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { ProductsContainer } from "../../components";
 import "./index.scss";
+import shop from "../../../shop";
 
 function Cart({ products }) {
   const total = products.reduce((result, product) => {
@@ -38,7 +39,7 @@ Cart.propTypes = {
 };
 
 const enhance = connect(state => ({
-  products: state.shop.products.filter(product => product.cartCount > 0),
+  products: shop.selectors.getCardProducts(state),
 }));
 
 export default enhance(Cart);
